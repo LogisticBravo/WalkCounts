@@ -6,11 +6,26 @@
 {% endblock %}
 
 {% block content %}
-<h1>steps here</h1>
-{% load crispy_forms_tags %}
-<form action="/steps/" method="post">
-    {% csrf_token %}
-    {{ form|crispy }}
-    <input type="submit" value="Submit">
-</form>
+<div class="container-fluid">
+    <h1 class="pt-5 text-center text-white">What do you want to do?</h1>
+    <!-- Weekly target -->
+    <div class="row align-items-end mt-3">
+        <div class="col-12 align-self-center text-center">
+            <h3 class="orbitron text-orange pb-3 fw-bold">Set a Weekly Target</h3>
+            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#goals">
+                <i class="fas fa-bullseye fa-9x text-white pb-3"></i>
+            </button>
+            {% include 'includes/steps/goal_modal.html' %}
+        </div>
+        <!-- Daily Steps -->
+        <div class="col-12 align-self-center text-center">
+            <h3 class="orbitron text-orange py-3 fw-bold">Log Daily Steps</h3>
+            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#steps">
+                <i class="fas fa-running fa-9x"></i>
+            </button>
+        </div>
+    </div>
+
+</div>
+
 {% endblock %}
