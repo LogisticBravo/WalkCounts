@@ -1,6 +1,6 @@
 """ Steps form module """
 from django import forms
-from . models import Goals
+from . models import Goals, Steps
 
 
 class GoalsForm(forms.Form):
@@ -13,6 +13,7 @@ class GoalsForm(forms.Form):
                                    )
                                )
     first_name = Goals
+    user = Goals
 
     def __init__(self, *args, **kwargs):
         """
@@ -26,6 +27,13 @@ class GoalsForm(forms.Form):
         self.fields['goals'].label = False
 
 
-class Steps(forms.Form):
+class StepsForm(forms.Form):
     """ Creates the steps form for taking users steps """
-    steps = forms.IntegerField(label='Steps', min_value=1, max_value=250000)
+    steps = forms.IntegerField(label='Steps', min_value=1, max_value=250000,
+                               widget=forms.TextInput(attrs={
+                                   'placeholder': 'Log Steps'
+                                   }
+                                   )
+                               )
+    first_name = Steps
+    user = Steps
