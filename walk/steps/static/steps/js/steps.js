@@ -9,4 +9,26 @@ document.addEventListener('DOMContentLoaded', (event) => {
         body.classList.remove("d-none");
         // body.insertAdjacentHTML("afterbegin", "<p>You have already set a Goal of {% if user.is_authenticated %} {{ user }} {% endif %} for the week!</p>");
     }
+
+    let userSteps = document.getElementById("userSteps").innerText;
+    let userGoal = document.getElementById("userGoal").innerText;
+    let progressBar = document.getElementById('progressBar');
+    let progressLabel = document.getElementById('progressLabel');
+
+    userSteps = parseInt(userSteps);
+    userGoal = parseInt(userGoal);
+
+    let progress = (userSteps/userGoal);
+    progress = (progress*100);
+    progress = Math.round(progress)
+
+    progressBar.style.width=progress+'%'
+
+    progressLabel.innerText=progress+'% Complete'
+
+    if(progress <= 25){
+        progressBar.classList.remove('bg-info');
+        progressBar.classList.add('bg-warning');
+    }
+    
   })

@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block extra_css %}
+<link rel="stylesheet" href="{% static 'steps/css/steps.css' %}">
 {% endblock %}
 
 {% block extra_js %}
@@ -28,8 +29,19 @@
             </button>
             {% include 'includes/steps/steps_modal.html' %}
         </div>
+        <!-- Progress Bar -->
+        <div class="col-12 align-self-center text-center">
+            <h3 class="orbitron text-orange py-3 text-center">Your Weekly Progress</h3>
+            <p> 
+               <span id="userSteps"> {{ user_target.0.steps }} </span>/<span id="userGoal"> {{ user_target.0.goal }} </span>
+            </p>
+            <div class="progress">
+                <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 1%" aria-valuenow="1" aria-valuemin="0" aria-valuemax="100" id="progressBar">
+                    <span class="sr-only" id="progressLabel"></span>
+                </div>
+            </div>
+        </div>
     </div>
-    {{ user_target.0.steps }} / {{ user_target.0.goal }}
 </div>
 
 {% endblock %}
