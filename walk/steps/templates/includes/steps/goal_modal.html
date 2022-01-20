@@ -6,7 +6,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <p class="d-none" id="goal-log">You have already set a Goal of {% if user.is_authenticated %} <span class="fw-bold">{{ current_target.0.goal }}</span> {% endif %} steps for the week!</p>
+        <p class="d-none" id="goal-log">You have already set a Goal of {% if user.is_authenticated %} <span class="fw-bold">{{ user_target.0.goal }}</span> {% endif %} steps for the week!</p>
         {% load crispy_forms_tags %}
         <form action="/steps/" method="post" id="goal-form">
           {% csrf_token %}

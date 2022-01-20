@@ -2,7 +2,7 @@ from datetime import date, timedelta
 from django.shortcuts import render, redirect
 
 from .forms import GoalsForm, StepsForm
-from .models import Target
+from .models import Target, DailySteps
 
 
 # Create your views here.
@@ -22,6 +22,7 @@ def steps(request):
 
     current_target = Target()
     current_target = Target.objects.filter(user=user)
+    user_target = current_target.filter(goal_submitted__range=(this_monday, next_monday))
 
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
@@ -31,14 +32,16 @@ def steps(request):
         if form.is_valid():
             goals = form.cleaned_data['goals']
 
-            new_target = Target.objects.get(user=user)
+            new_target = Target.objects.create(user=user)
 
             if new_target.goal == 0:
                 new_target.goal = goals
+                new_target.first_name = user.first_name
                 new_target.goal_submitted = date.today()
                 new_target.save()
             else:
-                new_target.goal += goals
+                new_target.goal = goals
+                new_target.first_name = user.first_name
                 new_target.goal_submitted = date.today()
                 new_target.save()
 
@@ -48,22 +51,33 @@ def steps(request):
         if stepsform.is_valid():
             steps_data = stepsform.cleaned_data['steps']
 
-            new_steps = Target.objects.get(user=user)
+            new_steps = DailySteps()
 
-            if new_steps.steps == 0:
-                new_steps.steps = steps_data
-                new_steps.save()
-            else:
-                new_steps.steps += steps_data
-                new_steps.save()
+            new_steps = DailySteps.objects.create(
+                user=user,
+                steps=steps_data,
+                date=date.today()
+            )
+
+            new_steps.save()
+
+            steps_total = current_target.get(goal_submitted__range=(this_monday, next_monday))
+            steps_total.steps += steps_data
+            steps_total.save()
 
             return redirect('home')
     else:
         if request.user.is_authenticated:
-            # Checks if the user has already entered a goal for the week. Redirects them otherwise.
+            # Checks if the user has already entered a goal for the week. Removes the form if so and displays their current goal.
             if current_target and Target.objects.filter(goal_submitted__range=(this_monday, next_monday)):
-                stepsform = StepsForm()
-                form = None
+
+                new_target = current_target.filter(goal_submitted__range=(this_monday, next_monday))
+
+                if not new_target:
+                    form = GoalsForm()
+                else:
+                    stepsform = StepsForm()
+                    form = None
         else:
             form = GoalsForm()
             stepsform = StepsForm()
@@ -71,7 +85,8 @@ def steps(request):
     context = {
         'form': form,
         'stepsform': stepsform,
-        'current_target': current_target
+        'current_target': current_target,
+        'user_target': user_target
     }
 
     return render(request, 'steps/steps.html', context)

@@ -1,6 +1,6 @@
 """ Steps form module """
 from django import forms
-from . models import Goals, Target
+from . models import Target
 
 
 class GoalsForm(forms.Form):
@@ -12,8 +12,8 @@ class GoalsForm(forms.Form):
                                    }
                                    )
                                )
-    first_name = Goals
-    user = Goals
+    first_name = Target
+    user = Target
 
     def __init__(self, *args, **kwargs):
         """

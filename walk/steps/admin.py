@@ -1,15 +1,6 @@
 from django.contrib import admin
-from .models import Goals, Target
+from .models import Target, DailySteps
 # Register your models here.
-
-
-class GoalsAdmin(admin.ModelAdmin):
-    list_display = (
-        'goals',
-        'submit_date',
-        'first_name',
-        'user',
-    )
 
 
 class TargetAdmin(admin.ModelAdmin):
@@ -21,6 +12,18 @@ class TargetAdmin(admin.ModelAdmin):
         'steps',
     )
 
+    ordering = ('user', 'goal_submitted')
 
-admin.site.register(Goals, GoalsAdmin)
+
+class DailyStepsAdmin(admin.ModelAdmin):
+    list_display = (
+        'user',
+        'steps',
+        'date'
+    )
+
+    ordering = ('user', 'date')
+
+
+admin.site.register(DailySteps, DailyStepsAdmin)
 admin.site.register(Target, TargetAdmin)
