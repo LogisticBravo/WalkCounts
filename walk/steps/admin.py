@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Goals, Steps
+from .models import Goals, Target
 # Register your models here.
 
 
@@ -12,14 +12,15 @@ class GoalsAdmin(admin.ModelAdmin):
     )
 
 
-class StepsAdmin(admin.ModelAdmin):
+class TargetAdmin(admin.ModelAdmin):
     list_display = (
-        'steps',
-        'submit_date',
-        'first_name',
         'user',
+        'first_name',
+        'goal',
+        'goal_submitted',
+        'steps',
     )
 
 
 admin.site.register(Goals, GoalsAdmin)
-admin.site.register(Steps, StepsAdmin)
+admin.site.register(Target, TargetAdmin)

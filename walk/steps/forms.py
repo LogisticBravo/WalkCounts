@@ -1,6 +1,6 @@
 """ Steps form module """
 from django import forms
-from . models import Goals, Steps
+from . models import Goals, Target
 
 
 class GoalsForm(forms.Form):
@@ -35,5 +35,5 @@ class StepsForm(forms.Form):
                                    }
                                    )
                                )
-    first_name = Steps
-    user = Steps
+    first_name = Target
+    user = Target
