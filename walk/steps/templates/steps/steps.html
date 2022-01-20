@@ -26,15 +26,10 @@
             <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#steps">
                 <i class="fas fa-running fa-9x"></i>
             </button>
-            {% load crispy_forms_tags %}
-        <form action="/steps/" method="post">
-          {% csrf_token %}
-          {{ stepsform|crispy }}
-          <input type="submit" value="Submit">
-        </form>
+            {% include 'includes/steps/steps_modal.html' %}
         </div>
     </div>
-
+    {{ user_target.0.steps }} / {{ user_target.0.goal }}
 </div>
 
 {% endblock %}

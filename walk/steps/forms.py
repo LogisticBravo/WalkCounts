@@ -37,3 +37,14 @@ class StepsForm(forms.Form):
                                )
     first_name = Target
     user = Target
+
+    def __init__(self, *args, **kwargs):
+        """
+        Add placeholders and classes, remove auto-generated
+        labels and set autofocus on first field
+        """
+        super().__init__(*args, **kwargs)
+
+        self.fields['steps'].widget.attrs['autofocus'] = True
+        self.fields['steps'].widget.attrs['class'] = 'form-control my-3'
+        self.fields['steps'].label = False

@@ -1,0 +1,21 @@
+<div class="modal fade" id="steps" tabindex="-1" aria-labelledby="stepsLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header justify-content-center">
+          <h5 class="modal-title" id="goalsLabel">Log/Add Steps!</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          {% load crispy_forms_tags %}
+          <form action="/steps/" method="post" id="steps-form">
+            {% csrf_token %}
+            {{ stepsform|crispy }}
+            <input type="submit" value="Submit">
+          </form>
+        </div>
+        <div class="modal-footer justify-content-center">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
