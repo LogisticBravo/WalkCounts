@@ -24,20 +24,13 @@
                       </tr>
                     </thead>
                     <tbody>
+                      {% for user in week_leader %}
                       <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
+                        <th scope="row">{{ forloop.counter }}</th>
+                        <td>{{ user.first_name }}</td>
+                        <td>{{ user.steps }}</td>
                       </tr>
-                      <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                      </tr>
+                      {% endfor %}
                     </tbody>
                   </table>
                   <!-- end 7-day leaderboard table -->
@@ -53,20 +46,13 @@
                       </tr>
                     </thead>
                     <tbody>
+                      {% for user in leaderboard %}
                       <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
+                        <th scope="row">{{ forloop.counter }}</th>
+                        <td>{{ user.first_name }}</td>
+                        <td>{{ user.steps }}</td>
                       </tr>
-                      <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                      </tr>
+                      {% endfor %}
                     </tbody>
                   </table>
                   <!-- end all time leaderboard table -->

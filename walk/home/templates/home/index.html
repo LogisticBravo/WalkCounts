@@ -21,10 +21,10 @@
                  steps against your peers. 
             </p>
             <p class="text-white">Use this to set goals, log your steps, track your progress and compare against your competition.</p>
-            <button type="button" class="btn btn-outline-info">Register Here!</button>
+            <a class="btn btn-outline-info" href="{% url 'account_signup' %}" role="button">Register Here!</a>
             <p class="text-white mb-0">
                 - or - <br>
-                <a href="" class="text-small text-orange fw-bold text-decoration-none">LOGIN</a>
+                <a href="{% url 'account_login' %}" class="text-small text-orange fw-bold text-decoration-none">LOGIN</a>
             </p>
         </div>
     </div>
@@ -35,6 +35,9 @@
         <div class="col-12 col-md-5 mt-4">
             {% include 'includes/leaderboard.html' %}
         </div>
+        
+        <p> {{ total_leader }} </p>
+        
     </div>
 </div>
 {% endblock %}

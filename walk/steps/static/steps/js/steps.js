@@ -22,9 +22,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
     progress = (progress*100);
     progress = Math.round(progress)
 
-    progressBar.style.width=progress+'%'
+    let result = progress+'%'
 
-    progressLabel.innerText=progress+'% Complete'
+    progressBar.style.width=result;
+    progressBar.innerText=result;
+
+    progressLabel.innerText=result;
 
     if(progress <= 25){
         progressBar.classList.remove('bg-info');
