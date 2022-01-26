@@ -53,21 +53,22 @@ def index(request):
                               key=operator.itemgetter(1),
                               reverse=True))
 
-    for x in users:
-        total = Target.objects.filter(user=x)
-        if TotalSteps.objects.filter(user=x):
-            updateUser = TotalSteps.objects.get(user=x)
-            leader = total.aggregate(Sum('steps'))
-            new_steps = leader['steps__sum']
-            updateUser.steps = new_steps
-            updateUser.save()
-        else:
-            leader = total.aggregate(Sum('steps'))
-            TotalSteps.objects.create(
-                user=x,
-                first_name=x.first_name,
-                steps=leader['steps__sum']
-                )
+    # REDUNDANT AS LEADERBOARD HANDLED IN VIEW ABOVE
+    # for x in users:
+    #     total = Target.objects.filter(user=x)
+    #     if TotalSteps.objects.filter(user=x):
+    #         updateUser = TotalSteps.objects.get(user=x)
+    #         leader = total.aggregate(Sum('steps'))
+    #         new_steps = leader['steps__sum']
+    #         updateUser.steps = new_steps
+    #         updateUser.save()
+    #     else:
+    #         leader = total.aggregate(Sum('steps'))
+    #         TotalSteps.objects.create(
+    #             user=x,
+    #             first_name=x.first_name,
+    #             steps=leader['steps__sum']
+    #             )
 
     # leaderboard = TotalSteps.objects.all().order_by(F('steps').desc())
 
