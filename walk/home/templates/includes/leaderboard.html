@@ -24,11 +24,19 @@
                       </tr>
                     </thead>
                     <tbody>
+<<<<<<< HEAD
                       {% for key,value in week_leader.items %}
                       <tr>
                         <th scope="row">{{ forloop.counter }}</th>
                         <td>{{ key }}</td>
                         <td>{{ value }}</td>
+=======
+                      {% for user in week_leader %}
+                      <tr>
+                        <th scope="row">{{ forloop.counter }}</th>
+                        <td>{{ user.first_name }}</td>
+                        <td>{{ user.steps }}</td>
+>>>>>>> refs/remotes/origin/main
                       </tr>
                       {% endfor %}
                     </tbody>
@@ -46,11 +54,19 @@
                       </tr>
                     </thead>
                     <tbody>
+<<<<<<< HEAD
                       {% for key, value in leaderboard.items %}
                       <tr>
                         <th scope="row">{{ forloop.counter }}</th>
                         <td>{{ key }}</td>
                         <td>{{ value }}</td>
+=======
+                      {% for user in leaderboard %}
+                      <tr>
+                        <th scope="row">{{ forloop.counter }}</th>
+                        <td>{{ user.first_name }}</td>
+                        <td>{{ user.steps }}</td>
+>>>>>>> refs/remotes/origin/main
                       </tr>
                       {% endfor %}
                     </tbody>

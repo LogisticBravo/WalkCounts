@@ -33,6 +33,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     progress = (progress*100);
     progress = Math.round(progress)
 
+<<<<<<< HEAD
 
     if(progress == NaN){
         result = '0%';
@@ -45,6 +46,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
         progressLabel.innerText=result;
     }
+=======
+    let result = progress+'%'
+
+    progressBar.style.width=result;
+    progressBar.innerText=result;
+
+    progressLabel.innerText=result;
+>>>>>>> refs/remotes/origin/main
 
     if(progress <= 25){
         progressBar.classList.remove('bg-info');
