@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Target, DailySteps
+from .models import Target, DailySteps, TotalSteps
 # Register your models here.
 
 
@@ -25,5 +25,16 @@ class DailyStepsAdmin(admin.ModelAdmin):
     ordering = ('user', 'date')
 
 
+class TotalStepsAdmin(admin.ModelAdmin):
+    list_display = (
+        'user',
+        'first_name',
+        'steps',
+    )
+
+    ordering = ('user', 'steps')
+
+
 admin.site.register(DailySteps, DailyStepsAdmin)
 admin.site.register(Target, TargetAdmin)
+admin.site.register(TotalSteps, TotalStepsAdmin)

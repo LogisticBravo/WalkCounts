@@ -10,7 +10,7 @@ class Target(models.Model):
     steps = models.IntegerField('Total Steps', null=True, default=0)
 
     def __str__(self):
-        return f"{self.user}, {self.goal}, {self.steps}"
+        return f"{self.user}, {self.goal}, {self.steps}, {self.first_name}"
 
 
 class DailySteps(models.Model):
@@ -22,4 +22,16 @@ class DailySteps(models.Model):
         verbose_name_plural = 'Daily Steps'
 
     def __str__(self):
-        return f"{self.steps}"
+        return f"{self.user}, {self.steps}"
+
+
+class TotalSteps(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    first_name = models.CharField(max_length=255, null=True)
+    steps = models.IntegerField(null=True, default=0)
+
+    class Meta:
+        verbose_name_plural = 'Total Steps'
+
+    def __str__(self):
+        return f"{self.user}, {self.first_name}, {self.steps}"

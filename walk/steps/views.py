@@ -24,6 +24,12 @@ def steps(request):
     current_target = Target.objects.filter(user=user)
     user_target = current_target.filter(goal_submitted__range=(this_monday, next_monday))
 
+    if request.method == 'GET':
+        try:
+            steps_total = current_target.get(goal_submitted__range=(this_monday, next_monday))
+        except:
+            stepsform = None
+
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
         form = GoalsForm(request.POST)
@@ -62,6 +68,7 @@ def steps(request):
             new_steps.save()
 
             steps_total = current_target.get(goal_submitted__range=(this_monday, next_monday))
+
             steps_total.steps += steps_data
             steps_total.save()
 

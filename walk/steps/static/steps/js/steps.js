@@ -7,6 +7,17 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
         let body = document.getElementById("goal-log");
         body.classList.remove("d-none");
+    };
+    
+    let steps = document.getElementById("id_steps");
+
+    if((steps==null)){
+        form = document.getElementById("steps-form");
+        form.remove();
+
+        let body = document.getElementById("steps-log");
+        body.classList.remove("d-none");
+
         // body.insertAdjacentHTML("afterbegin", "<p>You have already set a Goal of {% if user.is_authenticated %} {{ user }} {% endif %} for the week!</p>");
     }
 
@@ -22,9 +33,18 @@ document.addEventListener('DOMContentLoaded', (event) => {
     progress = (progress*100);
     progress = Math.round(progress)
 
-    progressBar.style.width=progress+'%'
 
-    progressLabel.innerText=progress+'% Complete'
+    if(progress == NaN){
+        result = '0%';
+    }
+    else{
+        let result = progress+'%'
+    
+        progressBar.style.width=result;
+        progressBar.innerText=result;
+
+        progressLabel.innerText=result;
+    }
 
     if(progress <= 25){
         progressBar.classList.remove('bg-info');

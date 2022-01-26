@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     'crispy_forms',
     'home',
     'steps',
-    'user',
 ]
 
 MIDDLEWARE = [
@@ -65,7 +64,7 @@ INTERNAL_IPS = [
     '127.0.0.1',
 ]
 
-CSRF_TRUSTED_ORIGINS = ['https://8000-ogisticravo-alkounts-37e8raejvk7.ws-eu27.gitpod.io', 'https://*.127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['https://8000-ogisticravo-alkounts-37e8raejvk7.ws-eu29.gitpod.io', 'https://*.127.0.0.1']
 
 TEMPLATES = [
     {

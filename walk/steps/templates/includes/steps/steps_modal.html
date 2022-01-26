@@ -6,6 +6,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
+          <p class="d-none" id="steps-log">You must set a Goal for the week before you can log steps!</p>
           {% load crispy_forms_tags %}
           <form action="/steps/" method="post" id="steps-form">
             {% csrf_token %}
