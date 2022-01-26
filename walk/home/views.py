@@ -4,11 +4,8 @@ from django.db.models import F, Sum
 from steps.models import Target, TotalSteps
 
 from django.contrib.auth.models import User
-<<<<<<< HEAD
 
 import operator
-=======
->>>>>>> refs/remotes/origin/main
 
 
 # Create your views here.
